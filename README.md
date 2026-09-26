@@ -108,4 +108,4 @@ Raw generations are provided for the principal Qwen2.5-7B conditions:
 
 and the Gemma-2-9B Base and Polysynthetic-CPT replication.
 
-Secondary raw outputs and trained adapters are not distributed, but can be regenerated using the provided scripts.
+Everything can be regenerated using the provided scripts.
