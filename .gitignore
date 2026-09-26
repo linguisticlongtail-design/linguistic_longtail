@@ -1,0 +1,35 @@
+# Model outputs / checkpoints
+logs/
+
+# Raw / processed data
+
+# Hugging Face / model caches
+.cache/
+huggingface/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Environments
+.env
+.venv/
+venv/
+
+# Editors / OS
+.vscode/
+.DS_Store
+
+# Experiment junk
+*.log
+
+# Outputs: ignore checkpoints/adapters, keep evaluation JSONLs
+outputs/*
+!outputs/*.jsonl
+
+# Downloaded / derived Leipzig corpora
+data/raw/
+data/processed/
+data/cpt/
