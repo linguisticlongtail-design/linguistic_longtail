@@ -71,6 +71,18 @@ def load_text_dataset(path):
     return Dataset.from_dict({"text": texts})
 
 
+
+class EOSPreservingCollator(DataCollatorForLanguageModeling):
+    def torch_call(self, examples):
+        batch = super().torch_call(examples)
+        if "attention_mask" not in batch:
+            raise ValueError("Missing attention_mask")
+
+        batch["labels"] = batch["input_ids"].clone()
+        batch["labels"][batch["attention_mask"] == 0] = -100
+        return batch
+
+
 def main():
     args = parse_args()
 
@@ -209,7 +221,7 @@ def main():
     # Causal next-token prediction
     # ---------------------------------------------------------
 
-    data_collator = DataCollatorForLanguageModeling(
+    data_collator = EOSPreservingCollator(
         tokenizer=tokenizer,
         mlm=False,
     )

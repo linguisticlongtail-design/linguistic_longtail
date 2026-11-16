@@ -129,6 +129,7 @@ def main():
                 generated = model.generate(
                     **inputs,
                     max_new_tokens=args.max_new_tokens,
+                    min_new_tokens=10,
 
                     # Deterministic decoding
                     do_sample=False,

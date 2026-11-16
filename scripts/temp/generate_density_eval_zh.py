@@ -1,3 +1,4 @@
+
 import argparse
 import json
 import random
@@ -5,43 +6,43 @@ from pathlib import Path
 
 
 NAMES = [
-    "Maya", "Daniel", "Priya", "Lucas",
-    "Amina", "Sofia", "Ethan", "Nora",
+    "玛雅", "丹尼尔", "普丽娅", "卢卡斯",
+    "阿米娜", "索菲娅", "伊森", "诺拉",
 ]
 
 CITIES = [
-    "Boston", "Chicago", "Seattle",
-    "Denver", "Austin", "Atlanta",
+    "波士顿", "芝加哥", "西雅图",
+    "丹佛", "奥斯汀", "亚特兰大",
 ]
 
 TOPICS = [
-    "robotics",
-    "linguistics",
-    "economics",
-    "climate science",
-    "medicine",
-    "astronomy",
+    "机器人学",
+    "语言学",
+    "经济学",
+    "气候科学",
+    "医学",
+    "天文学",
 ]
 
 DAYS = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
+    "星期一",
+    "星期二",
+    "星期三",
+    "星期四",
+    "星期五",
 ]
 
 TRANSPORT = [
-    "train",
-    "bus",
-    "plane",
+    "火车",
+    "公共汽车",
+    "飞机",
 ]
 
 INSTRUCTIONS = [
-    "Describe the following information naturally in a paragraph.",
-    "Write a paragraph based on the information below.",
-    "Communicate the following information naturally.",
-    "Turn the following facts into a paragraph.",
+    "请将以下信息自然地描述成一段话。",
+    "请根据以下信息写一段话。",
+    "请自然地表达以下信息。",
+    "请将以下事实整理成一段话。",
 ]
 
 
@@ -57,11 +58,11 @@ def basic_event(rng):
     topic = rng.choice(TOPICS)
 
     facts = [
-        f"{name} traveled to {city} on {day}.",
-        f"{name} traveled by {mode}.",
-        f"{name} attended a conference.",
-        f"The conference focused on {topic}.",
-        f"{name} stayed in {city} for two nights.",
+        f"{name}于{day}前往{city}。",
+        f"{name}乘坐{mode}出行。",
+        f"{name}参加了一场会议。",
+        f"会议的主题是{topic}。",
+        f"{name}在{city}住了两晚。",
     ]
 
     return facts
@@ -73,12 +74,12 @@ def multi_entity(rng):
     topic_a, topic_b = sample_distinct(rng, TOPICS, 2)
 
     facts = [
-        f"{a} traveled to {city}.",
-        f"{b} also traveled to {city}.",
-        f"{a} attended a workshop on {topic_a}.",
-        f"{b} attended a conference on {topic_b}.",
-        f"{a} arrived before {b}.",
-        f"{a} and {b} returned home on the same day.",
+        f"{a}前往了{city}。",
+        f"{b}也前往了{city}。",
+        f"{a}参加了一场关于{topic_a}的研讨会。",
+        f"{b}参加了一场关于{topic_b}的会议。",
+        f"{a}比{b}先到达。",
+        f"{a}和{b}在同一天返回家中。",
     ]
 
     return facts
@@ -90,12 +91,12 @@ def temporal(rng):
     topic = rng.choice(TOPICS)
 
     facts = [
-        f"{name} arrived in {city} on Monday.",
-        f"{name} attended a workshop on Tuesday.",
-        f"The workshop focused on {topic}.",
-        f"{name} visited a museum on Wednesday.",
-        f"{name} gave a presentation on Thursday.",
-        f"{name} returned home on Friday.",
+        f"{name}于星期一抵达{city}。",
+        f"{name}于星期二参加了一场研讨会。",
+        f"研讨会的主题是{topic}。",
+        f"{name}于星期三参观了一家博物馆。",
+        f"{name}于星期四做了一场报告。",
+        f"{name}于星期五返回家中。",
     ]
 
     return facts
@@ -108,12 +109,12 @@ def causal(rng):
     delay = rng.choice([30, 45, 60, 90])
 
     facts = [
-        f"{name} traveled to {city} by {mode}.",
-        f"The {mode} was delayed by {delay} minutes.",
-        f"The delay caused {name} to arrive late.",
-        f"{name} missed the opening presentation.",
-        f"{name} attended the remaining sessions.",
-        f"{name} returned home the following day.",
+        f"{name}乘坐{mode}前往{city}。",
+        f"{mode}延误了{delay}分钟。",
+        f"这次延误导致{name}迟到。",
+        f"{name}错过了开场报告。",
+        f"{name}参加了其余的会议环节。",
+        f"{name}于第二天返回家中。",
     ]
 
     return facts
@@ -130,12 +131,12 @@ def numerical(rng):
     attendees_b = attendees_a + rng.choice([20, 30, 40])
 
     facts = [
-        f"{a} reviewed {papers_a} papers.",
-        f"{b} reviewed {papers_b} papers.",
-        f"{b} reviewed more papers than {a}.",
-        f"{a}'s session had {attendees_a} attendees.",
-        f"{b}'s session had {attendees_b} attendees.",
-        f"Both sessions focused on {topic}.",
+        f"{a}审阅了{papers_a}篇论文。",
+        f"{b}审阅了{papers_b}篇论文。",
+        f"{b}审阅的论文比{a}多。",
+        f"{a}的会议环节有{attendees_a}名参与者。",
+        f"{b}的会议环节有{attendees_b}名参与者。",
+        f"两个会议环节的主题都是{topic}。",
     ]
 
     return facts
@@ -149,13 +150,13 @@ def compressible(rng):
     topic = rng.choice(TOPICS)
 
     facts = [
-        f"{name} traveled to {city}.",
-        f"The trip happened on {day}.",
-        f"{name} traveled by {mode}.",
-        f"{name} attended a conference.",
-        f"The conference focused on {topic}.",
-        f"The conference took place in {city}.",
-        f"{name} stayed for two nights.",
+        f"{name}前往了{city}。",
+        f"这次旅行发生在{day}。",
+        f"{name}乘坐{mode}出行。",
+        f"{name}参加了一场会议。",
+        f"会议的主题是{topic}。",
+        f"会议在{city}举行。",
+        f"{name}住了两晚。",
     ]
 
     return facts
@@ -167,12 +168,12 @@ def low_compressibility(rng):
     topic = rng.choice(TOPICS)
 
     facts = [
-        f"{a} lives in {city_a}.",
-        f"{b} lives in {city_b}.",
-        f"{c} studies {topic}.",
-        f"{a} owns a bicycle.",
-        f"{b} has two dogs.",
-        f"{c} works on Saturdays.",
+        f"{a}居住在{city_a}。",
+        f"{b}居住在{city_b}。",
+        f"{c}研究{topic}。",
+        f"{a}拥有一辆自行车。",
+        f"{b}养了两只狗。",
+        f"{c}每周六工作。",
     ]
 
     return facts
@@ -194,7 +195,7 @@ def main():
 
     parser.add_argument(
         "--output",
-        default="data/density_eval_v1.jsonl",
+        default="data/density_eval_v1_zh.jsonl",
     )
 
     parser.add_argument(
@@ -224,7 +225,7 @@ def main():
 
         for i in range(args.n):
 
-            # Cycle categories so they're approximately balanced.
+            # Cycle categories to preserve the original distribution.
             category = categories[i % len(categories)]
 
             facts = GENERATORS[category](rng)
@@ -234,13 +235,8 @@ def main():
             example = {
                 "id": i,
                 "category": category,
-
-                # Each item is deliberately an atomic
-                # ground-truth proposition.
                 "facts": facts,
-
                 "instruction": instruction,
-
                 "num_facts": len(facts),
             }
 
@@ -248,8 +244,7 @@ def main():
                 json.dumps(
                     example,
                     ensure_ascii=False,
-                )
-                + "\n"
+                ) + "\n"
             )
 
             counts[category] += 1
@@ -257,9 +252,8 @@ def main():
     print(f"\nSaved {args.n} examples to {output}\n")
 
     print("Category counts:")
-
     for category, count in counts.items():
-        print(f"  {category:20s} {count}")
+        print(f"  {category}: {count}")
 
 
 if __name__ == "__main__":
